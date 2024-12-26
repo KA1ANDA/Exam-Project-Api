@@ -20,44 +20,49 @@ namespace ExamProjectApi.Controllers
         [HttpPost]
         public IActionResult create_order(Order order)
         {
-            
-            this.pkg_orders.create_order(order);
-            return Ok();
+
+            int orderId = this.pkg_orders.create_order(order);
+
+            return Ok(orderId);
         }
 
 
-        [HttpPost]
-        public IActionResult add_book_to_order(OrderDetails order)
-        {
-
-            this.pkg_orders.add_book_to_order(order);
-            return Ok();
-        }
-
 
         [HttpPost]
-        public IActionResult add_to_cart(CartOrder order)
+        public IActionResult add_book_order_details(OrderDetail order)
         {
 
-            this.pkg_orders.add_to_cart(order);
+            this.pkg_orders.add_book_order_details(order);
+
             return Ok();
         }
 
 
         [HttpGet]
-        public IActionResult get_user_cart_by_customer()
-        {
 
-            List<CartOrder> orders = new List<CartOrder>();
-            orders = this.pkg_orders.get_user_cart_by_customer();
+        public IActionResult get_orders()
+        {
+            List<Order> orders = new List<Order>();
+            orders = this.pkg_orders.get_orders();
 
             return Ok(orders);
         }
 
 
+        [HttpPost]
+
+        public IActionResult get_order_details(Order order)
+        {
+            List<OrderDetail> orderDetails = new List<OrderDetail>();
+            orderDetails = this.pkg_orders.get_order_details(order);
+
+            return Ok(orderDetails);
+        }
 
 
 
         
+
+
     }
 }
